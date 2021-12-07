@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Weather</title>
+</head>
+<body>
+    <div class="overlay"></div>
+    <section class="head">
+        <div class="row">
+            <div class="search-bar"><input class="input" type="text"></div>
+            <button class="search-btn" id='loc'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg></button>
+              <button class="search-btn" id="my_loc"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+              </svg></button>
+        </div>
+    </section>
+    <section class="currentWeather">
+        <div class="container" id='head'>
+            <!-- <div class="row1">City Name</div>
+            <div class="row2">
+                <div class="icon-box"></div>
+                <div class="temp">feels-like</div>
+                <div class="Degree">C OR F</div>
+            </div> -->
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section class="other_params">
+        <div class="container" id="cont">
+            <!-- <div class="row2">
+                <div class="feels-like"></div>
+                <div class="Humidity">Humidity <img src="/Icons/humidity.png" alt=""></div>
+                <div class="pressure">Pressure <img src="/Icons/pressure.png" alt=""></div>
+            </div>
+            <div class="row3">
+                <div class="windspeed">
+                    Windspeed <img src="/Icons/wind-speed.png" alt="">
+                </div>
+                <div class="gust">
+                    Gust <img src="/Icons/wind-direc.png" alt="">
+                </div>
+            </div> -->
+        </div>
+    </section>
+    <div class="divider"></div>
+    <div class="desc-box">
+        <!-- <div class="desciption">
+            It is clear sky.
+        </div> -->
+    </div>
+    <div class="divider"></div>
+    <section class="minmaxtemp">
+      <div class="row4" id ="prec">
+          <!-- <div class="col2">
+            <div class="mintemp"><img src="/Icons/min-temp.png" alt=""></div>
+            <div class="maxtemp"><img src="/Icons/max-temp.png" alt=""></div>
+          </div> -->
+      </div>
+    </section>
+    <script src="controller.js"></script>
+</body>
+</html>
