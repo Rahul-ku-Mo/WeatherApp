@@ -5,7 +5,7 @@ const desc_box = document.querySelector(".desc-box");
 const head = document.getElementById("head");
 const ParentEl = document.getElementById("prec");
 const parentEl = document.getElementById("cont");
-const API_KEY = "69e376545ca93dae87ed257628268ab0";
+
 
 
 
