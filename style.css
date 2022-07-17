@@ -72,6 +72,7 @@ input:focus {
   height: 100%;
   filter: invert(0.5);
   width: 20px !important;
+  cursor: pointer;
 }
 .search-location {
   position: relative;

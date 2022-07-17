@@ -1,10 +1,8 @@
 const API_KEY = "69e376545ca93dae87ed257628268ab0";
 
-let query = [];
-let defaultWeather = [];
 let city = "",
   country = "";
-
+let tempUnit = "metric";
 const timeFormatting = (x) =>
   new Date(x * 1000).toLocaleTimeString([], {
     hour: "2-digit",
@@ -17,11 +15,15 @@ const dayFormatting = (x) =>
     weekday: "long",
   });
 
-const unitFormatting = (x) => {
-  return Math.floor(x * 1.8 + 32);
+const unitFormattingtoFahr = (x) => {
+  return Math.round(x * 1.8 + 32);
 };
 
-const textInput = document.querySelector('input');
+const unitFormattingtoCels = (x) =>{
+  return Math.round((x-32)*5/9);
+}
+
+const textInput = document.querySelector("input");
 
 const cur_loc = document.querySelector(".search-location");
 
@@ -45,16 +47,6 @@ const wrapper = document.querySelector(".swiper-wrapper");
 
 const forecast_container = document.querySelector(".forecast-container");
 
-tempFahr.addEventListener("click", () => {
-  tempFahr.classList.toggle("current");
-  tempCel.classList.toggle("current");
-});
-
-tempCel.addEventListener("click", () => {
-  tempCel.classList.toggle("current");
-  tempFahr.classList.toggle("current");
-});
-
 const getJSON = function (url, errorMsg = "Something went wrong") {
   return fetch(url).then((response) => {
     console.log(response);
@@ -66,6 +58,8 @@ const getJSON = function (url, errorMsg = "Something went wrong") {
 
 const getWeatherDetails = async function () {
   try {
+    let query = [];
+
     const textInput = document.querySelector("input").value;
 
     const data = await getJSON(
@@ -79,7 +73,7 @@ const getWeatherDetails = async function () {
     const { lat, lon } = data.coord;
 
     const fetchWeatherData = fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&appid=${API_KEY}&units=metric`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&appid=${API_KEY}&units=${tempUnit}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -93,23 +87,36 @@ const getWeatherDetails = async function () {
   }
 };
 
-search_location.addEventListener("click", getWeatherDetails);
+search_location.addEventListener("click", () => {
+  if (textInput.value !== " ") {
+    col_left.parentNode.removeChild(document.querySelector(".column"));
+    document.querySelectorAll(".swiper-slide").forEach((item) => {
+      item.remove();
+    });
+    console.log(h22.parentNode.removeChild(document.querySelector(".highlight-container")))
+    document.querySelectorAll(".week").forEach((item) => {
+    
+      item.remove();
+    });
+
+    getWeatherDetails();
+  }
+});
 
 const success = function (position) {
   const { latitude, longitude } = position.coords;
-
+  let defaultWeather = [];
   const fetchCitydata = fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
   )
     .then((response) => response.json())
     .then((item) => {
-     
       city = item.name;
       country = item.sys.country;
     });
 
   const defaultData = fetch(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,alerts&appid=${API_KEY}&units=metric`
+    `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,alerts&appid=${API_KEY}&units=${tempUnit}`
   )
     .then((response) => response.json())
     .then((data) => {
@@ -135,8 +142,8 @@ const LoadWeatherDetails = (weatherDetails, city, country) => {
   const wind_speed = current.wind_speed;
   const uvi = current.uvi;
   const clouds = current.clouds;
-  const temp = Math.floor(current.temp);
-  const feels_like = Math.floor(current.feels_like);
+  const temp = Math.round(current.temp);
+  const feels_like = Math.round(current.feels_like);
 
   const weather_desc = current.weather[0].description;
   const weather_icon = current.weather[0].icon;
@@ -222,11 +229,10 @@ const LoadWeatherDetails = (weatherDetails, city, country) => {
     )}</span></div>
     <img src="./weather_icons/${item.weather[0].icon}.svg" alt="" width="100" />
     <div class="forecast-description">${item.weather[0].description}</div>
-    ${
-      tempCel.classList.contains("current")
-        ? `<div class="minmax-temp"> ${Math.floor(item.temp)}°C</div>`
-        : `<div class="minmax-temp"> ${unitFormatting(item.temp)}°F</div>`
-    }</div>
+
+     <div class="minmax-temp">${Math.round(item.temp)}°C</div>
+       
+    </div>
     </div>
     </div>`;
 
@@ -234,15 +240,15 @@ const LoadWeatherDetails = (weatherDetails, city, country) => {
   });
 
   daily.forEach((data) => {
-    const content = `<div class="forecast-card">
+    const content = `<div class="forecast-card week">
     <div class="forecast-day">${dayFormatting(data.dt)}</div>
     <img src="/weather_icons/${
       data.weather[0].icon
     }.svg" alt="icon" width="100" />
     <div class="forecast-description">${data.weather[0].description}</div>
-    <div class="minmax-temp">${Math.floor(data.temp.max)}°<span>${Math.floor(
+    <div class="minmax-temp">${Math.round(data.temp.max)}°C<span>${Math.round(
       data.temp.min
-    )}°</span></div>
+    )}°C</span></div>
   </div>`;
 
     forecast_container.innerHTML += content;
@@ -250,16 +256,14 @@ const LoadWeatherDetails = (weatherDetails, city, country) => {
 
   //fix the same below error
   FIXME: col_left.insertAdjacentHTML("afterend", currentMarkUp);
-  element[0].classList.toggle("loaded");
-
-  if(textInput.value === "" && defaultWeather.length > 0) {}
+  // element[0].classList.toggle("loaded");
 
   //If it has children then remove else add the html part
   FIXME: h22.insertAdjacentHTML("afterend", highlightMarkUp);
-  element[1].classList.toggle("loaded");
+  // element[1].classList.toggle("loaded");
 
-  element[2].classList.toggle("loaded");
-  element[3].classList.toggle("loaded");
+//   element[2].classList.toggle("loaded");
+//   element[3].classList.toggle("loaded");
 };
 
 /**GET CURRENT POSITION
@@ -272,20 +276,19 @@ const fetchCurrentPosition = function () {
   }
 };
 
-if(document.querySelector("input").value === ""){
-  cur_loc.addEventListener("click",fetchCurrentPosition);
-  console.log("happening")
+if (document.querySelector("input").value === "") {
+  cur_loc.addEventListener("click", fetchCurrentPosition);
+  console.log("happening");
 }
- 
 
-if(document.querySelector("input").value !== ""){
-  cur_loc.removeEventListener("click",fetchCurrentPosition);
-  console.log("happening add")
+if (document.querySelector("input").value !== "") {
+  cur_loc.removeEventListener("click", fetchCurrentPosition);
+  console.log("happening add");
 }
 
 window.onload = () => {
   fetchCurrentPosition();
-  cur_loc.removeEventListener("click",fetchCurrentPosition);
+  cur_loc.removeEventListener("click", fetchCurrentPosition);
 };
 
 /***-------------------END--------------- */
@@ -297,3 +300,65 @@ let swiper = new Swiper(".mySwiper", {
   },
   slidesPerView: 5,
 });
+
+
+tempFahr.addEventListener("click", () => {
+  tempFahr.classList.toggle("current");
+  tempCel.classList.toggle("current");
+
+  tempCel.style.pointerEvents = "";
+  tempFahr.style.pointerEvents = "none";
+  document.querySelectorAll(".minmax-temp").forEach((el) => {
+    if(el.children.length == 0){
+      el.innerHTML = `${unitFormattingtoFahr(el.innerHTML.slice(0,2))}°F`;
+ 
+    }
+
+    if(el.children.length == 1){
+      console.log(el.innerHTML.slice(10,12));
+      el.innerHTML = `${unitFormattingtoFahr(el.innerHTML.slice(0,2))}°C<span>${unitFormattingtoFahr(el.innerHTML.slice(10,12))}°F</span`
+    }                                                  
+  })
+
+  let el1 = document.querySelector(".temp-main");
+  let el2 = document.querySelector(".temp-feels");
+  
+  el1.innerHTML = `${unitFormattingtoFahr(el1.innerHTML.slice(0,2))}<span>°F</span>`;
+  el2.innerHTML = `Feels like ${unitFormattingtoFahr(el2.innerHTML.slice(-5,-2))}°F`;
+});
+
+tempCel.addEventListener("click", () => {
+  tempCel.classList.toggle("current");
+  tempFahr.classList.toggle("current");
+
+  tempCel.style.pointerEvents = "none";
+  tempFahr.style.pointerEvents = "";
+ 
+  document.querySelectorAll(".minmax-temp").forEach((el) => {
+
+    if(el.children.length == 0){
+      el.innerHTML = `${unitFormattingtoCels(el.innerHTML.slice(0,2))}°C`;
+    }   
+    
+    if(el.children.length == 1){
+      console.log(el.innerHTML);
+      el.innerHTML = `${unitFormattingtoCels(el.innerHTML.slice(0,2))}°C<span>${unitFormattingtoCels(el.innerHTML.slice(10,12))}°C</span`
+    }
+  })
+
+  let el1 = document.querySelector(".temp-main");
+  let el2 = document.querySelector(".temp-feels");
+  
+  el1.innerHTML = `${unitFormattingtoCels(el1.innerHTML.slice(0,2))}<span>°C</span>`;
+  el2.innerHTML = `Feels like ${unitFormattingtoCels(el2.innerHTML.slice(-5,-2))}°C`;
+});
+
+
+/****Check pointer Events */
+if(tempCel.classList.contains("current")){
+  tempCel.style.pointerEvents = "none";
+}
+if(tempFahr.classList.contains("current")){
+  tempFahr.style.pointerEvents = "none";
+}
+/*********************END  ***********/

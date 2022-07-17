@@ -1,273 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+    <link href="/assets/css/all.css" rel="stylesheet" />
+    <link href="/assets/css/all.min.css" rel="stylesheet" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
-  <link href="/assets/css/all.css" rel="stylesheet">
-  <link href="/assets/css/all.min.css" rel="stylesheet">
+    <title>Weather</title>
+  </head>
 
+  <body>
+    <section class="Weather">
+      <div class="container-left">
+        <div class="col-left row-1">
+          <img class="search-btn" src="./svg/search.svg" alt="search" />
 
-  <title>Weather</title>
-</head>
-
-<body>
-  <section class="Weather">
-    <div class="container-left">
-      <div class="col-left row-1">
-        <img class="search-btn" src="./svg/search.svg" alt="search" />
-
-        <div class="search-bar">
-          <input class="input" type="text" placeholder="Delhi" autocomplete="off" />
+          <div class="search-bar">
+            <input
+              class="input"
+              type="text"
+              placeholder="Delhi"
+              autocomplete="off"
+            />
+          </div>
+          <img
+            class="search-location"
+            src="./svg/current-location.svg"
+            alt="current-location"
+          />
         </div>
-        <img class="search-location" src="./svg/current-location.svg" alt="current-location" />
-      </div>
-
-      <div class="loader center" style="height: 40vh">
+        <!-- <div class="loader center" style="height: 40vh">
         <div class="spinner"></div>
         <span class="loader-text">Loading...</span>
-      </div>
-      <!-- <div class="column">
-        <div class="row-2">
-          <img src="./weather_icons/01d.svg" alt="day_weather" />
-        </div>
-        <div class="row-3">
-          <div class="weather-info">
-            <h1 class="temp-main">38<span>°C</span></h1>
-            <div class="temp-feels">Feels like 42°C</div>
-          </div>
-          <div>
-            <div class="day">Monday, <span>11:52 PM</span></div>
-            <div class="city">
-             <i class="fa-regular fa-location-pin"></i> Balasore, IN
-            </div>
-          </div>
-        </div>
       </div> -->
-    </div>
-
-    <div class="container-right">
-      <div class="unit-header">
-        <h3>Today</h3>
-        <div class="scale">
-          <div class="convert current">°C</div>
-          <div class="convert">°F</div>
-        </div>
       </div>
 
-      <div class="swiper swiper-pointer-events mySwiper">
-        <div class="loader center" style="height: 40vh">
+      <div class="container-right">
+        <div class="unit-header">
+          <h3>Today</h3>
+          <div class="scale">
+            <div class="convert current">°C</div>
+            <div class="convert">°F</div>
+          </div>
+        </div>
+
+        <div class="swiper swiper-pointer-events mySwiper">
+          <!-- <div class="loader center" style="height: 40vh">
           <div class="spinner"></div>
           <span class="loader-text">Loading...</span>
-        </div>
-        <div class="swiper-wrapper">
-          
-          <!-- <div class="swiper-slide" style="margin-right: 20px; width: 232px">
-            <div class="forecast-card">
-              <div class="forecast-day">Tuesday, <span>7:30 AM</span></div>
-              <img src="./weather_icons/02d.svg" alt="" width="100" />
-              <div class="forecast-description">broken clouds</div>
-              <div class="minmax-temp">31°</div>
-            </div>
-          </div> -->
-          <!-- <div class="swiper-slide" style="margin-right: 20px; width: 232px">
-            <div class="forecast-card">
-              <div class="forecast-day">Tuesday, <span>7:30 AM</span></div>
-              <img src="./weather_icons/02d.svg" alt="" width="100" />
-              <div class="forecast-description">broken clouds</div>
-              <div class="minmax-temp">31°</div>
-            </div>
-          </div> -->
-          <!-- <div class="swiper-slide" style="margin-right: 20px; width: 232px">
-            <div class="forecast-card">
-              <div class="forecast-day">Tuesday, <span>7:30 AM</span></div>
-              <img src="./weather_icons/02d.svg" alt="" width="100" />
-              <div class="forecast-description">broken clouds</div>
-              <div class="minmax-temp">31°</div>
-            </div>
-          </div> -->
-          <!-- <div class="swiper-slide" style="margin-right: 20px; width: 232px">
-            <div class="forecast-card">
-              <div class="forecast-day">Tuesday, <span>7:30 AM</span></div>
-              <img src="./weather_icons/02d.svg" alt="" width="100" />
-              <div class="forecast-description">broken clouds</div>
-              <div class="minmax-temp">31°</div>
-            </div>
-          </div> -->
-          <!-- <div class="swiper-slide" style="margin-right: 20px; width: 232px">
-            <div class="forecast-card">
-              <div class="forecast-day">Tuesday, <span>7:30 AM</span></div>
-              <img src="./weather_icons/02d.svg" alt="" width="100" />
-              <div class="forecast-description">broken clouds</div>
-              <div class="minmax-temp">31°</div>
-            </div>
-          </div> -->
-          <!-- <div class="swiper-slide" style="margin-right: 20px; width: 232px">
-            <div class="forecast-card">
-              <div class="forecast-day">Tuesday, <span>7:30 AM</span></div>
-              <img src="./weather_icons/02d.svg" alt="" width="100" />
-              <div class="forecast-description">broken clouds</div>
-              <div class="minmax-temp">31°</div>
-            </div>
-          </div> -->
-          <!-- <div class="swiper-slide" style="margin-right: 20px; width: 232px">
-            <div class="forecast-card">
-              <div class="forecast-day">Tuesday, <span>7:30 AM</span></div>
-              <img src="./weather_icons/02d.svg" alt="" width="100" />
-              <div class="forecast-description">broken clouds</div>
-              <div class="minmax-temp">31°</div>
-            </div>
-          </div> -->
-          <!-- <div class="swiper-slide" style="margin-right: 20px; width: 232px">
-            <div class="forecast-card">
-              <div class="forecast-day">Tuesday, <span>7:30 AM</span></div>
-              <img src="./weather_icons/02d.svg" alt="" width="100" />
-              <div class="forecast-description">broken clouds</div>
-              <div class="minmax-temp">31°</div>
-            </div>
-          </div> -->
-          <!-- <div class="swiper-slide" style="margin-right: 20px; width: 232px">
-            <div class="forecast-card">
-              <div class="forecast-day">Tuesday, <span>7:30 AM</span></div>
-              <img src="./weather_icons/02d.svg" alt="" width="100" />
-              <div class="forecast-description">broken clouds</div>
-              <div class="minmax-temp">31°</div>
-            </div>
-          </div> -->
-          <!-- <div class="swiper-slide" style="margin-right: 20px; width: 232px">
-            <div class="forecast-card">
-              <div class="forecast-day">Tuesday, <span>7:30 AM</span></div>
-              <img src="./weather_icons/02d.svg" alt="" width="100" />
-              <div class="forecast-description">broken clouds</div>
-              <div class="minmax-temp">31°</div>
-            </div>
-          </div> -->
-        </div>
-        <div class="swiper-button-next"></div>
-           <div class="swiper-button-prev"></div>
-      </div>
-      <div class="highlights">
-        <h3>Today's Highlights</h3>
-        <div class="loader center" style="height: 40vh">
-          <div class="spinner"></div>
-          <span class="loader-text">Loading...</span>
-        </div>
-        <!-- <div class="highlight-container">
-          <div class="h-card">
-            <div class="h-title">Humidity</div>
-            <img src="/weather_icons/humidity.png" width="100" alt="" />
-            <div class="hl-value">
-              <h1>79</h1>
-              <span>%</span>
-            </div>
-          </div>
-          <div class="h-card">
-            <div class="h-title">Wind Speed</div>
-            <img src="/weather_icons/wind-day.svg" width="100" alt="wind icon" />
-            <div class="hl-value">
-              <h1>4.1</h1>
-              <span>m/s</span>
-            </div>
-          </div>
-          <div class="h-card sun">
-            <div class="sun-info">
-              <img src="/weather_icons/sunrise.svg" width="50" alt="" />
-              <div>5:31 AM<span>Sunrise</span></div>
-            </div>
-            <div class="sun-info">
-              <img src="/weather_icons/sunset.svg" width="50" alt="" />
-              <div>7:21 PM<span>Sunset</span></div>
-            </div>
-          </div>
-          <div class="h-card">
-            <div class="h-title">Clouds</div>
-            <img src="/weather_icons/clouds.svg" width="100" alt="" />
-            <div class="hl-value">
-              <h1>75</h1>
-              <span>%</span>
-            </div>
-          </div>
-          <div class="h-card">
-            <div class="h-title">UV Index</div>
-            <img src="/weather_icons/uv.svg" width="100" alt="" />
-            <h1>1.23</h1>
-          </div>
-          <div class="h-card">
-            <div class="h-title">Pressure</div>
-            <img src="/weather_icons/pressure.svg" width="100" alt="" />
-            <div class="hl-value">
-              <h1>1002</h1>
-              <span>hPa</span>
-            </div>
-          </div>
         </div> -->
-      </div>
-      <div class="weekly">
-        <h3>This Week</h3>
-        <div class="loader center" style="height: 40vh">
+          <div class="swiper-wrapper"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+        <div class="highlights">
+          <h3>Today's Highlights</h3>
+          <!-- <div class="loader center" style="height: 40vh">
           <div class="spinner"></div>
           <span class="loader-text">Loading...</span>
+        </div> -->
         </div>
-        <div class="forecast-container">
-          <!-- <div class="forecast-card">
-            <div class="forecast-day">Tuesday</div>
-            <img src="/weather_icons/10d.svg" alt="icon" width="100" />
-            <div class="forecast-description">light rain</div>
-            <div class="minmax-temp">40°<span>30°</span></div>
-          </div>
-          <div class="forecast-card">
-            <div class="forecast-day">Wednesday</div>
-            <img src="/weather_icons/10d.svg" alt="icon" width="100" />
-            <div class="forecast-description">light rain</div>
-            <div class="minmax-temp">39°<span>34°</span></div>
-          </div>
-          <div class="forecast-card">
-            <div class="forecast-day">Thursday</div>
-            <img src="/weather_icons/10d.svg" alt="icon" width="100" />
-            <div class="forecast-description">light rain</div>
-            <div class="minmax-temp">40°<span>32°</span></div>
-          </div>
-          <div class="forecast-card">
-            <div class="forecast-day">Friday</div>
-            <img src="/weather_icons/10d.svg" alt="icon" width="100" />
-            <div class="forecast-description">moderate rain</div>
-            <div class="minmax-temp">39°<span>32°</span></div>
-          </div>
-          <div class="forecast-card">
-            <div class="forecast-day">Saturday</div>
-            <img src="/weather_icons/10d.svg" alt="icon" width="100" />
-            <div class="forecast-description">light rain</div>
-            <div class="minmax-temp">40°<span>31°</span></div>
-          </div>
-          <div class="forecast-card">
-            <div class="forecast-day">Sunday</div>
-            <img src="/weather_icons/10d.svg" alt="icon" width="100" />
-            <div class="forecast-description">light rain</div>
-            <div class="minmax-temp">37°<span>34°</span></div>
-          </div>
-          <div class="forecast-card">
-            <div class="forecast-day">Monday</div>
-            <img src="/weather_icons/10d.svg" alt="icon" width="100" />
-            <div class="forecast-description">light rain</div>
-            <div class="minmax-temp">39°<span>32°</span></div>
-          </div>
-          <div class="forecast-card">
-            <div class="forecast-day">Tuesday</div>
-            <img src="/weather_icons/10d.svg" alt="icon" width="100" />
-            <div class="forecast-description">light rain</div>
-            <div class="minmax-temp">40°<span>33°</span></div>
-          </div> -->
+        <div class="weekly">
+          <h3>This Week</h3>
+          <!-- <div class="loader center" style="height: 40vh">
+          <div class="spinner"></div>
+          <span class="loader-text">Loading...</span>
+        </div> -->
+          <div class="forecast-container"></div>
         </div>
       </div>
-    </div>
-  </section>
-  <script type="module" src="/src/script.js"></script>
-  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-
-
-</body>
-
+    </section>
+    <script type="module" src="/src/script.js"></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  </body>
 </html>
