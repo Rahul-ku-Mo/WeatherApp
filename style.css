@@ -1,62 +1,362 @@
-*{
-    box-sizing: border-box;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-html{
-    scroll-behavior: smooth;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-block-end: 0;
+  margin-block-start: 0;
 }
- 
+
+:root {
+  --lef-col-width: 33%;
+  --placeholder-color: #323232;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 /* desciption */
-.row{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+.Weather {
+  display: flex;
+  min-height: 100vh;
 }
 
-.input{
-    border-radius: 30px;
-    width: 100%;
-    padding:10px 0px;
-    font-size: 24px;
-    
-}
-.search-btn{
-    padding: 10px 20px;
-    margin-left: 20px;
-    border-radius: 30px;
+body {
+  margin: 0px;
 }
 
-.currentWeather,.other_params{
-    padding-top:100px;
-    margin: auto;
+.container-left {
+  background: #fff;
+  inset: 0;
+  padding: 2rem;
+  position: fixed;
+  width: 33%;
+  width: var(--lef-col-width);
+}
+.col-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-.row1,.row2,.row3{
-    display: flex;
-    
-}
-.row2,.row3{
-    justify-content: flex-end;
-}
-.row24{
-    display: flex;
-    flex-direction: column;
-}
-.divider{
-    width:50%;
-    border-top:3px dotted black;
+.input {
+  border-radius: 10px;
+  width: 100%;
+  height: 45px;
+  padding: 10px 40px;
+  font-size: 24px;
+  background-color: #e7e7e7;
+  border: 1px solid #e7e7e7;
+  font-size: 1.1em;
 }
 
-.row4{
-    display:flex;
+input:focus {
+  outline-style: none;
 }
-.col1,.col2{
-    flex-basis: 32%;
+.col-left img {
+  height: 100%;
+  width: 32px;
 }
 
-.mintemp,.maxtemp{
-    display:flex;
-    align-items:center;
+.search-btn {
+  position: relative;
+  left: 33px;
+  height: 100%;
+  filter: invert(0.5);
+  width: 20px !important;
+}
+.search-location {
+  position: relative;
+  right: 40px;
+  border: 2px solid #c3c3c361;
+  padding: 4px;
+  border-radius: 50%;
+  background: #c3c3c361;
+}
+/**************ROW_2*******/
+.row-2 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.row-2 img {
+  position: relative;
+  /* padding: 30px 10px 20px 0px; */
+  width: 250px;
+  /* animation: breathing 3s ease-out infinite normal; */
+}
+
+/**Transition**/
+/* @keyframes breathing {
+  0% {
+    transform: scale(0.9);
+  }
+
+  25% {
+    transform: scale(1);
+  }
+
+  60% {
+    transform: scale(0.9);
+  }
+
+  100% {
+    transform: scale(0.9);
+  }
+} */
+
+.temp-main {
+  display: flex;
+  font-family: Poppins;
+  font-size: 10rem;
+  font-weight: 300;
+  margin-block-end: 0;
+  margin-block-start: 0;
+}
+
+.temp-main span {
+  font-size: 5rem;
+  font-weight: 400;
+  margin-top: 20px;
+}
+
+.weather-info {
+  border-bottom: 1px solid rgb(202, 202, 202);
+}
+sup {
+  position: relative;
+  top: 10px;
+}
+
+.temp-feels {
+  color: #7f7f7f;
+  margin-top: -3rem;
+  margin-left: 1rem;
+}
+.city {
+  font-size: 2rem;
+
+  text-transform: capitalize;
+}
+
+.day {
+  font-family: "Space Grotesk", sans-serif !important;
+  font-size: 2.5rem;
+}
+.day span {
+  color: #7f7f7f;
+}
+/** RIght part***/
+.container-right {
+  background: #f6f6f8;
+  flex: 1 1;
+  margin-left: 33%;
+  margin-left: var(--lef-col-width);
+  padding: 2rem;
+  width: 67%;
+  width: calc(100% - var(--lef-col-width));
+}
+
+.unit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.scale {
+  display: flex;
+  gap: 10px;
+}
+
+.convert {
+  color: black;
+  background-color: white;
+  display: flex;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 800;
+}
+
+.current {
+  background-color: black;
+  color: white;
+}
+
+.forecast-card {
+  align-items: center;
+  background: #fff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 16rem;
+  justify-content: space-between;
+  min-width: 150px;
+  padding: 1rem;
+  margin: 10px 10px 0 0;
+}
+
+.forecast-day {
+  margin-bottom: 1rem;
+}
+.forecast-description {
+  color: #7f7f7f;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.swiper-wrapper {
+  padding-left: 10px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  outline: none;
+}
+
+/* 
+div.swiper-button-next, div.swiper-button-prev {
+ 
+} */
+
+.highlight-container {
+  grid-gap: 12px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.highlights h3 {
+  margin: 25px 0px;
+}
+.forecast-container,
+.highlight-container {
+  display: grid;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-around;
+}
+.h-card {
+  align-items: center;
+  background: #fff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 150px;
+  padding: 1rem;
+}
+.h-card.sun {
+  justify-content: space-evenly;
+}
+.sun-info {
+  align-items: center;
+  display: flex;
+}
+.sun-info span {
+  color: #7f7f7f;
+  font-size: 1.4rem;
+}
+.sun-info div {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+.h-title {
+  margin-bottom: 1rem;
+}
+.hl-value {
+  align-items: flex-end;
+  display: flex;
+  margin-top: 1rem;
+}
+.hl-value span {
+  color: #7f7f7f;
+  margin-bottom: 0.8rem;
+  margin-left: 0.2rem;
+}
+.h-card h1 {
+  font-size: 3rem;
+}
+
+.forecast-container {
+  grid-gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+}
+.forecast-container .forecast-card {
+  height: 13rem;
+  justify-content: center;
+}
+
+.weekly h3 {
+  margin: 25px 0px;
+}
+
+.minmax-temp span {
+  color: #7f7f7f;
+  margin-left: 1rem;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+.loader {
+  display: flex;
+  flex-direction: column;
+}
+.loader .spinner {
+  -webkit-animation: loader 0.7s linear infinite;
+  animation: loader 0.7s linear infinite;
+  border-color: #d007da #9c1f03 #edad23 #4ceb24;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 4px;
+  height: 40px;
+  width: 40px;
+}
+.loader-text {
+  font-size: 1.9rem;
+  margin-top: 1rem;
+}
+
+@keyframes loader {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.loaded {
+  display: none;
+}
+.description {
+  align-items: center;
+  display: flex;
+  font-size: 2rem;
+  margin: 1rem 0;
+  text-transform: capitalize;
+}
+.description i {
+  font-size: 3rem;
+  padding-right: 10px;
+}
+
+.fa-brands,
+.fab {
+  font-family: "Font Awesome 6 Brands";
+  font-weight: 400;
+}
+
+.city i {
+  padding-right: 10px;
 }
