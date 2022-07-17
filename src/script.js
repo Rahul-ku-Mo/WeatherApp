@@ -1,8 +1,10 @@
 const API_KEY = "69e376545ca93dae87ed257628268ab0";
 
-let city = "",
-  country = "";
+let city = "";
+let country = "";
 let tempUnit = "metric";
+
+/* utils */
 const timeFormatting = (x) =>
   new Date(x * 1000).toLocaleTimeString([], {
     hour: "2-digit",
@@ -23,12 +25,16 @@ const unitFormattingtoCels = (x) =>{
   return Math.round((x-32)*5/9);
 }
 
+/********END of Utils */
+
+
+//City Input
 const textInput = document.querySelector("input");
-
+//Fetch Current Location based IP Address
 const cur_loc = document.querySelector(".search-location");
-
+//Search Location based city
 const search_location = document.querySelector(".search-btn");
-
+//For unit Conversion
 const [tempCel, tempFahr] = document.getElementsByClassName("convert");
 
 const col_left = document.querySelector(".col-left");
@@ -38,11 +44,10 @@ const [h11, h22, h33] = document.getElementsByTagName("h3");
 const unit_header = document.querySelector(".unit-header");
 
 /*handle loader*/
-const element = document.getElementsByClassName("loader");
-console.log(element);
-// console.log(element.classList.toggle("loaded"))
+const LoaderElement = document.getElementsByClassName("loader");
+
 const columnLeft = document.querySelector(".column");
-// columnLeft.classList.toggle("loaded");
+
 const wrapper = document.querySelector(".swiper-wrapper");
 
 const forecast_container = document.querySelector(".forecast-container");
@@ -88,6 +93,12 @@ const getWeatherDetails = async function () {
 };
 
 search_location.addEventListener("click", () => {
+  LoaderElement[0].classList.toggle("loaded");
+  LoaderElement[1].classList.toggle("loaded");
+  LoaderElement[2].classList.toggle("loaded");
+  LoaderElement[3].classList.toggle("loaded");
+
+
   if (textInput.value !== " ") {
     col_left.parentNode.removeChild(document.querySelector(".column"));
     document.querySelectorAll(".swiper-slide").forEach((item) => {
@@ -255,15 +266,15 @@ const LoadWeatherDetails = (weatherDetails, city, country) => {
   });
 
   //fix the same below error
-  FIXME: col_left.insertAdjacentHTML("afterend", currentMarkUp);
-  // element[0].classList.toggle("loaded");
-
+  col_left.insertAdjacentHTML("afterend", currentMarkUp);
+   LoaderElement[0].classList.toggle("loaded");
+ 
   //If it has children then remove else add the html part
-  FIXME: h22.insertAdjacentHTML("afterend", highlightMarkUp);
-  // element[1].classList.toggle("loaded");
+  h22.insertAdjacentHTML("afterend", highlightMarkUp);
+  LoaderElement[1].classList.toggle("loaded");
 
-//   element[2].classList.toggle("loaded");
-//   element[3].classList.toggle("loaded");
+  LoaderElement[2].classList.toggle("loaded");
+  LoaderElement[3].classList.toggle("loaded");
 };
 
 /**GET CURRENT POSITION
@@ -278,17 +289,15 @@ const fetchCurrentPosition = function () {
 
 if (document.querySelector("input").value === "") {
   cur_loc.addEventListener("click", fetchCurrentPosition);
-  console.log("happening");
 }
 
 if (document.querySelector("input").value !== "") {
   cur_loc.removeEventListener("click", fetchCurrentPosition);
-  console.log("happening add");
 }
 
 window.onload = () => {
   fetchCurrentPosition();
-  cur_loc.removeEventListener("click", fetchCurrentPosition);
+  cur_loc.addEventListener("click", fetchCurrentPosition);
 };
 
 /***-------------------END--------------- */
